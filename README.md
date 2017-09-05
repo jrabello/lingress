@@ -5,6 +5,5 @@
 
 -----------------
 This project was created for siraj raval challenge(the math of inteligence).
-Week 0:
-Custom linear regression using gradient descent:
-https://github.com/llSourcell/linear_regression_live
+
+Week 0 - Custom linear regression using gradient descent - https://github.com/llSourcell/linear_regression_live
