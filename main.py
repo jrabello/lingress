@@ -10,7 +10,7 @@ def main():
     lr.compute()
     print("error: {} m:{} b:{}".format(lr.sse(), lr.m, lr.b))
     lr.plot()
-
+    
 
 if __name__ == '__main__':
     main()
