@@ -4,8 +4,7 @@
 </div>
 
 -----------------
-Custom Implementetation of linear regression using gradient descent
-
-This project was created for my personal learning purposes, after watching a siraj raval video about linear regression and taking coursera course with professor andrew ng
-
+This project was created for siraj raval challenge(the math of inteligence).
+Week 0:
+Custom linear regression using gradient descent:
 https://github.com/llSourcell/linear_regression_live
