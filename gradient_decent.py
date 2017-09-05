@@ -1,26 +1,25 @@
 class GradientDescent:
 
 
-    def __init__(self, learning_rate = 0.01, num_iterations = 1000):
+    def __init__(self, learning_rate):
         self.learning_rate = learning_rate
-        self.num_iterations = num_iterations
 
 
-    def step(self, points, w0, w1):
+    def step(self, points, b, m):
         """
-            computes the error relative to each w,
+            computes the error relative to each variable,
             and tries to minimize the error finding a local(or global) minimum
         """
         
-        w0_gradient = 0
-        w1_gradient = 0
+        b_gradient = 0
+        m_gradient = 0
         N = float(len(points))
 
         for x,y in points:
-            w0_gradient += -(2/N) * (y - ((w1 * x) + w0))
-            w1_gradient += -(2/N) * x * (y - ((w1 * x) + w0))
+            b_gradient += -(2/N) * (y - ((m * x) + b))
+            m_gradient += -(2/N) * x * (y - ((m * x) + b))
 
-        w0 = w0 - (w0_gradient * self.learning_rate)
-        w1 = w1 - (w1_gradient * self.learning_rate)
-        return w0, w1
+        b = b - (b_gradient * self.learning_rate)
+        m = m - (m_gradient * self.learning_rate)
+        return b, m
 

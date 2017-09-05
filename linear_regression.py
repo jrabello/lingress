@@ -6,30 +6,31 @@ from gradient_decent import *
 class LinearRegression:
     """        
         data = two features(x,y) each n-dimentional -> ex:[[1,2],[3,4]]
-        w1 = initial slope
-        w0 = initial y-intercept        
-        y = w0 + w1*x
+        m = initial slope
+        b = initial y-intercept        
+        y = b + m*x
     """
 
-    def __init__(self, points, w0 = 0, w1 = 0):
-        self.w0 = w0
-        self.w1 = w1
+    def __init__(self, points, b = 0, m = 0, iterations = 100, learning_rate = 0.01):
+        self.b = b        
+        self.m = m
         self.points = points
+        self.iterations = iterations
+        self.gd = GradientDescent(learning_rate)
 
 
     def compute(self):
-        gd = GradientDescent()
-        for i in range(0, gd.num_iterations):
-            self.w0, self.w1 = gd.step(self.points, self.w0, self.w1)
+        for i in range(0, self.iterations):
+            self.b, self.m = self.gd.step(self.points, self.b, self.m)
             #print("{} {} {}".format(self.sse(), self.w0, self.w1))
 
 
     def sse(self):
-        #computes the current sum of squared errors        
-        sum = 0
+        #computes the current sum of squared errors
+        csum = 0
         for x, y in self.points:
-            sum += (y - (self.w1*x +self.w0)) ** 2
-        return sum/float(len(self.points))
+            csum += (y - (self.m*x +self.b)) ** 2
+        return csum/float(len(self.points))
 
 
     def plot(self):
@@ -42,7 +43,7 @@ class LinearRegression:
         plt.plot(x, y, 'go')
 
         #plotting linear function
-        y2 = [self.w1 * num + self.w0 for num in x]        
+        y2 = [self.m * num + self.b for num in x]        
         plt.plot(x,y2)
         
         #display graph
