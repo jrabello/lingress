@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from gradient_decent import *
-
+from ggplot import *
 
 class LinearRegression:
     """        
@@ -11,18 +11,28 @@ class LinearRegression:
         y = b + m*x
     """
 
-    def __init__(self, points, b = 0, m = 0, iterations = 100, learning_rate = 0.01):
-        self.b = b        
-        self.m = m
-        self.points = points
+    def __init__(self, file = '', b = -70000, m = 0, iterations = 100, learning_rate = 0.01):
+        self.b = b      
+        self.m = m       
         self.iterations = iterations
+        self.errors = []
+        self.epochs = []
         self.gd = GradientDescent(learning_rate)
+        #building dataframe
+        self.df = pd.read_csv(file)
+        del self.df['id']
+        self.points = self.df.values.tolist()
+        #data = [[1, 3],[2, 5], [3, 10]]
+        #self.df = pd.DataFrame(data, columns=['year','HR'])
+        #self.points = data
 
 
     def compute(self):
         for i in range(0, self.iterations):
+            self.epochs.append(i)
+            self.errors.append(self.sse())
             self.b, self.m = self.gd.step(self.points, self.b, self.m)
-            #print("{} {} {}".format(self.sse(), self.w0, self.w1))
+            #print("{} {} {}".format(self.sse(), self.m, self.b))
 
 
     def sse(self):
@@ -32,6 +42,20 @@ class LinearRegression:
             csum += (y - (self.m*x +self.b)) ** 2
         return csum/float(len(self.points))
 
+
+    def gplot(self):
+        #plotting data and linear line
+        print ggplot(self.df, aes('year','HR')) + \
+            geom_point(color='red') + \
+            geom_abline(slope=self.m, intercept=self.b, color='steelblue') #+ \
+            #xlim(0,2050)            
+            #stat_smooth(method='lm') + \
+        #plotting errors
+        df = pd.DataFrame({'epochs':self.epochs,'error':self.errors})
+        print ggplot(df, aes('epochs', 'error')) + \
+            geom_point(color='red') + \
+            geom_line(color='red')
+        
 
     def plot(self):
         #plotting points

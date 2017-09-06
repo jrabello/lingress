@@ -1,6 +1,9 @@
 # lingress
 <div align="center">
-  <img src="https://github.com/jrabello/lingress/raw/master/img/linear-regression.png"><br><br>
+  <img src="https://github.com/jrabello/lingress/raw/master/img/plot.png"><br><br>
+</div>
+<div align="center">
+  <img src="https://github.com/jrabello/lingress/raw/master/img/error.png"><br><br>
 </div>
 
 -----------------
