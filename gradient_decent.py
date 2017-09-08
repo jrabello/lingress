@@ -9,8 +9,7 @@ class GradientDescent:
         """
             computes the error relative to each variable,
             and tries to minimize the error finding a local(or global) minimum
-        """
-        
+        """        
         b_gradient = 0
         m_gradient = 0
         N = float(len(points))
@@ -23,4 +22,5 @@ class GradientDescent:
         b = b - (b_gradient * self.learning_rate)
         m = m - (m_gradient * self.learning_rate)
         return b, m
+    
 

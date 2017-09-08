@@ -5,26 +5,23 @@ from ggplot import *
 
 class LinearRegression:
     """        
-        data = two features(x,y) each n-dimentional -> ex:[[1,2],[3,4]]
+        data = two features(x,y)
         m = initial slope
         b = initial y-intercept        
         y = b + m*x
     """
 
-    def __init__(self, file = '', b = -70000, m = 0, iterations = 100, learning_rate = 0.01):
+    def __init__(self, file_name = '', b = -70000, m = 0, iterations = 100, learning_rate = 0.01):
         self.b = b      
         self.m = m       
         self.iterations = iterations
         self.errors = []
         self.epochs = []
         self.gd = GradientDescent(learning_rate)
-        #building dataframe
-        self.df = pd.read_csv(file)
+        # building dataframe from file and storing features at points attribute
+        self.df = pd.read_csv(file_name)
         del self.df['id']
-        self.points = self.df.values.tolist()
-        #data = [[1, 3],[2, 5], [3, 10]]
-        #self.df = pd.DataFrame(data, columns=['year','HR'])
-        #self.points = data
+        self.points = self.df.values.tolist()        
 
 
     def compute(self):
@@ -36,7 +33,7 @@ class LinearRegression:
 
 
     def sse(self):
-        #computes the current sum of squared errors
+        #computes the current sum of squared errors(our chosen cost function)
         csum = 0
         for x, y in self.points:
             csum += (y - (self.m*x +self.b)) ** 2
