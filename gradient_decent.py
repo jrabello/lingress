@@ -1,14 +1,18 @@
 class GradientDescent:
-
-    def __init__(self, learning_rate):
+    
+    def __init__(self, learning_rate, n_iter):        
+        self.n_iter = n_iter
+        self.errors = []
+        self.epochs = range(1, n_iter+1)
         self.learning_rate = learning_rate
 
 
     def step(self, points, b, m):
         """
             computes the error relative to each variable,
-            and tries to minimize the error finding a local(or global) minimum
-        """        
+            and tries to minimize the error of our cost function(sse) 
+            by finding a local(or global) minimum
+        """
         b_gradient = 0
         m_gradient = 0
         N = float(len(points))
