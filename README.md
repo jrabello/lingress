@@ -3,9 +3,9 @@ This project was created for siraj raval challenge(the math of inteligence).
 
 Week 0 - Custom linear regression using gradient descent - https://github.com/llSourcell/linear_regression_live
 
-The dataset iris contains the following features used:
-- **sepal length**
-- **petal length**
+The dataset is contains information about houses in suburb of Boston(EUA), the following features were used:
+- **RM: average number of rooms**
+- **MEDV: price in $1000's**
 
 -----------------
 
